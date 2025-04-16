@@ -4,6 +4,9 @@
 
 ## Установка
  Ссылка на colab - https://colab.research.google.com/drive/1NhZ0lA0h5D2dMBucCdOZ-WQ8DxmqmZlC?usp=sharing
+                   https://colab.research.google.com/drive/1NhZ0lA0h5D2dMBucCdOZ-WQ8DxmqmZlC?usp=sharing
+                   https://colab.research.google.com/drive/1NhZ0lA0h5D2dMBucCdOZ-WQ8DxmqmZlC?usp=sharing
+						 https://colab.research.google.com/drive/1NhZ0lA0h5D2dMBucCdOZ-WQ8DxmqmZlC?usp=sharing
 Этот проект служит методическим указанием для реализации аналогичных проектов. Вы можете использовать его как основу для своего анализа данных, адаптируя код и подходы под свои нужды. В проекте представлены примеры кода, которые помогут вам в обработке и визуализации данных.
 
 ### Примеры использования
