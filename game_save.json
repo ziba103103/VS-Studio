@@ -1,0 +1,26 @@
+{
+  "score": 40,
+  "current_question": 5,
+  "answered": [
+    {
+      "question": "Что делает 'import warnings' в Python?",
+      "correct": false
+    },
+    {
+      "question": "Что возвращает 'time.time()'?",
+      "correct": false
+    },
+    {
+      "question": "Что делает 'from io import StringIO'?",
+      "correct": false
+    },
+    {
+      "question": "Какой стандартный псевдоним используют для 'import numpy'?",
+      "correct": false
+    },
+    {
+      "question": "Что хранит DataFrame в библиотеке pandas?",
+      "correct": false
+    }
+  ]
+}

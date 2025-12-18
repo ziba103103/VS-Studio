@@ -1,0 +1,92 @@
+[
+  {
+    "question": "Про что вопрос: 'What does the &quot;yield&quot; keyword do in Python?'?",
+    "correct_answer": "Это вопрос про Python программирование",
+    "wrong_answers": [
+      "Это вопрос про математику",
+      "Это вопрос про веб-дизайн",
+      "Это вопрос про базы данных"
+    ]
+  },
+  {
+    "question": "Про что вопрос: 'What does if __name__ == &quot;__main__&quot;: do?'?",
+    "correct_answer": "Это вопрос про Python программирование",
+    "wrong_answers": [
+      "Это вопрос про математику",
+      "Это вопрос про веб-дизайн",
+      "Это вопрос про базы данных"
+    ]
+  },
+  {
+    "question": "Про что вопрос: 'Does Python have a ternary conditional operator?'?",
+    "correct_answer": "Это вопрос про Python программирование",
+    "wrong_answers": [
+      "Это вопрос про математику",
+      "Это вопрос про веб-дизайн",
+      "Это вопрос про базы данных"
+    ]
+  },
+  {
+    "question": "Про что вопрос: 'What are metaclasses in Python?'?",
+    "correct_answer": "Это вопрос про Python программирование",
+    "wrong_answers": [
+      "Это вопрос про математику",
+      "Это вопрос про веб-дизайн",
+      "Это вопрос про базы данных"
+    ]
+  },
+  {
+    "question": "Про что вопрос: 'How do I check whether a file exists without exceptions?'?",
+    "correct_answer": "Это вопрос про Python программирование",
+    "wrong_answers": [
+      "Это вопрос про математику",
+      "Это вопрос про веб-дизайн",
+      "Это вопрос про базы данных"
+    ]
+  },
+  {
+    "question": "Про что вопрос: 'How do I merge two dictionaries in a single expression in Python?'?",
+    "correct_answer": "Это вопрос про Python программирование",
+    "wrong_answers": [
+      "Это вопрос про математику",
+      "Это вопрос про веб-дизайн",
+      "Это вопрос про базы данных"
+    ]
+  },
+  {
+    "question": "Про что вопрос: 'How do I execute a program or call a system command?'?",
+    "correct_answer": "Это вопрос про Python программирование",
+    "wrong_answers": [
+      "Это вопрос про математику",
+      "Это вопрос про веб-дизайн",
+      "Это вопрос про базы данных"
+    ]
+  },
+  {
+    "question": "Про что вопрос: 'How do I create a directory, and any missing parent directories?'?",
+    "correct_answer": "Это вопрос про Python программирование",
+    "wrong_answers": [
+      "Это вопрос про математику",
+      "Это вопрос про веб-дизайн",
+      "Это вопрос про базы данных"
+    ]
+  },
+  {
+    "question": "Про что вопрос: 'How can I access the index value in a &#39;for&#39; loop?'?",
+    "correct_answer": "Это вопрос про Python программирование",
+    "wrong_answers": [
+      "Это вопрос про математику",
+      "Это вопрос про веб-дизайн",
+      "Это вопрос про базы данных"
+    ]
+  },
+  {
+    "question": "Про что вопрос: 'How do I make a flat list out of a list of lists?'?",
+    "correct_answer": "Это вопрос про Python программирование",
+    "wrong_answers": [
+      "Это вопрос про математику",
+      "Это вопрос про веб-дизайн",
+      "Это вопрос про базы данных"
+    ]
+  }
+]
