@@ -1,26 +1,1597 @@
-{
-  "score": 40,
-  "current_question": 5,
-  "answered": [
-    {
-      "question": "Что делает 'import warnings' в Python?",
-      "correct": false
-    },
-    {
-      "question": "Что возвращает 'time.time()'?",
-      "correct": false
-    },
-    {
-      "question": "Что делает 'from io import StringIO'?",
-      "correct": false
-    },
-    {
-      "question": "Какой стандартный псевдоним используют для 'import numpy'?",
-      "correct": false
-    },
-    {
-      "question": "Что хранит DataFrame в библиотеке pandas?",
-      "correct": false
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([[112], {
+    9523: (e, t, a) => {
+        a.d(t, {
+            x: () => v
+        });
+        var l = a(28322)
+          , n = a(46093)
+          , s = a(71290)
+          , r = a(7620)
+          , o = a(40763)
+          , i = a(47229)
+          , d = a(4869)
+          , c = a(81562)
+          , u = a(69885)
+          , p = a(96122)
+          , m = a(80666)
+          , x = a(7158);
+        let h = (e, t) => {
+            switch (t.type) {
+            case "ADD_ITEM":
+                {
+                    let {item: a, afterId: s} = t.payload
+                      , r = e.ids.findIndex(e => e === s);
+                    return (0,
+                    n._)((0,
+                    l._)({}, e), {
+                        ids: [...e.ids.slice(0, r + 1), a.id, ...e.ids.slice(r + 1)],
+                        items: (0,
+                        n._)((0,
+                        l._)({}, e.items), {
+                            [a.id]: a
+                        }),
+                        updateHash: window.crypto.randomUUID()
+                    })
+                }
+            case "UPDATE_ITEM":
+                {
+                    let {item: a} = t.payload;
+                    return (0,
+                    n._)((0,
+                    l._)({}, e), {
+                        items: (0,
+                        n._)((0,
+                        l._)({}, e.items), {
+                            [a.id]: a
+                        }),
+                        updateHash: window.crypto.randomUUID()
+                    })
+                }
+            case "REMOVE_ITEM":
+                {
+                    let {removeId: a} = t.payload;
+                    return (0,
+                    n._)((0,
+                    l._)({}, e), {
+                        ids: e.ids.filter(e => e !== a),
+                        items: (0,
+                        x.jM)(e.items, e => {
+                            delete e[a]
+                        }
+                        ),
+                        updateHash: window.crypto.randomUUID()
+                    })
+                }
+            case "SWITCH_ITEMS":
+                {
+                    let {oldIndex: a, newIndex: s} = t.payload;
+                    return (0,
+                    n._)((0,
+                    l._)({}, e), {
+                        ids: (0,
+                        x.jM)(e.ids, e => {
+                            [e[a],e[s]] = [e[s], e[a]]
+                        }
+                        ),
+                        updateHash: window.crypto.randomUUID()
+                    })
+                }
+            case "SET_ACTIVE_ID":
+                {
+                    let {activeId: a} = t.payload;
+                    return (0,
+                    n._)((0,
+                    l._)({}, e), {
+                        activeId: a
+                    })
+                }
+            case "UPDATE_STATE":
+                return t.payload.state;
+            default:
+                throw Error('Unknown "action.type" provided')
+            }
+        }
+          , f = e => {
+            let t = {
+                activeId: null,
+                items: {},
+                ids: [],
+                updateHash: null
+            };
+            if (!e)
+                return t;
+            for (let a of e.outline)
+                t.ids.push(a.id),
+                t.items = (0,
+                n._)((0,
+                l._)({}, t.items), {
+                    [a.id]: {
+                        id: a.id,
+                        slideType: a.outlineSlideType,
+                        title: a.slideTitle,
+                        description: a.slideDescription
+                    }
+                });
+            return t
+        }
+          , v = e => {
+            let {order: t, isSubmitting: a, isRegenerating: x, onUpdate: v, onSubmit: g} = e
+              , {outline: y, active: b, updateHash: _, onAddItem: w, onUpdateItem: j, onRemoveItem: k, onSwitchItems: C, onSetActiveId: N, onUpdateState: E} = (e => {
+                let[t,a] = (0,
+                r.useReducer)(h, e)
+                  , l = (0,
+                r.useCallback)( (e, t) => {
+                    a({
+                        type: "ADD_ITEM",
+                        payload: {
+                            afterId: e,
+                            item: t
+                        }
+                    })
+                }
+                , [])
+                  , n = (0,
+                r.useCallback)(e => {
+                    a({
+                        type: "UPDATE_ITEM",
+                        payload: {
+                            item: e
+                        }
+                    })
+                }
+                , [])
+                  , s = (0,
+                r.useCallback)(e => {
+                    a({
+                        type: "REMOVE_ITEM",
+                        payload: {
+                            removeId: e
+                        }
+                    })
+                }
+                , [])
+                  , o = (0,
+                r.useCallback)( (e, t) => {
+                    a({
+                        type: "SWITCH_ITEMS",
+                        payload: {
+                            oldIndex: e,
+                            newIndex: t
+                        }
+                    })
+                }
+                , [])
+                  , i = (0,
+                r.useCallback)(e => {
+                    a({
+                        type: "SET_ACTIVE_ID",
+                        payload: {
+                            activeId: e
+                        }
+                    })
+                }
+                , [])
+                  , d = (0,
+                r.useCallback)(e => {
+                    a({
+                        type: "UPDATE_STATE",
+                        payload: {
+                            state: e
+                        }
+                    })
+                }
+                , [])
+                  , c = (0,
+                r.useMemo)( () => t.ids.map(e => t.items[e]), [t])
+                  , u = t.activeId && t.items[t.activeId] ? t.items[t.activeId] : null
+                  , p = t.activeId ? t.ids.findIndex(e => e === t.activeId) : null;
+                return {
+                    outline: c,
+                    active: u && null !== p ? {
+                        item: u,
+                        index: p
+                    } : null,
+                    updateHash: t.updateHash,
+                    onAddItem: l,
+                    onUpdateItem: n,
+                    onRemoveItem: s,
+                    onSwitchItems: o,
+                    onSetActiveId: i,
+                    onUpdateState: d
+                }
+            }
+            )(f(t.presentationOutline))
+              , [D,A] = (0,
+            r.useState)(new Set)
+              , I = (0,
+            r.useRef)({})
+              , S = (0,
+            r.useRef)(null)
+              , T = (0,
+            o.s)()
+              , P = (e => {
+                let t = (0,
+                p.g)()
+                  , a = (0,
+                d.jE)()
+                  , {getErrorMessage: s} = (0,
+                m.b)()
+                  , r = ["order", {
+                    orderId: e.orderId
+                }];
+                return (0,
+                c.n)({
+                    mutationKey: ["regenerateOutline", {
+                        orderId: e.orderId
+                    }],
+                    mutationFn: a => {
+                        let {language: l, slidesAmount: n} = a;
+                        return t.order.regenerateOutline({
+                            orderId: e.orderId,
+                            language: l,
+                            slidesAmount: n
+                        })
+                    }
+                    ,
+                    onMutate: async e => {
+                        let {language: t, slidesAmount: s} = e;
+                        await a.cancelQueries({
+                            queryKey: r
+                        });
+                        let o = a.getQueryData(r);
+                        return a.setQueryData(r, e => (0,
+                        n._)((0,
+                        l._)({}, e), {
+                            language: null != t ? t : e.language,
+                            slidesAmount: null != s ? s : e.slidesAmount,
+                            state: "outline-generating"
+                        })),
+                        o
+                    }
+                    ,
+                    onSuccess: () => {
+                        a.invalidateQueries({
+                            queryKey: ["order", {
+                                orderId: e.orderId
+                            }]
+                        })
+                    }
+                    ,
+                    onError: (e, t, l) => {
+                        a.setQueryData(r, l),
+                        u.oR.error("Не удалось обновить план презентации.", {
+                            description: s(e)
+                        })
+                    }
+                })
+            }
+            )({
+                orderId: t.id
+            })
+              , R = y.length > 0 && y.length === D.size;
+            return (0,
+            r.useEffect)( () => {
+                S.current = () => v(y)
+            }
+            , [y, v]),
+            (0,
+            r.useEffect)( () => {
+                E(f(t.presentationOutline))
+            }
+            , [t, E]),
+            (0,
+            r.useEffect)( () => {
+                let e = S.current;
+                e && _ && e()
+            }
+            , [_]),
+            {
+                outline: y,
+                active: b,
+                areAllSlidesChecked: R,
+                onSetInputNode: (e, t) => {
+                    I.current[e] = t
+                }
+                ,
+                onCheckExpanded: e => D.has(e),
+                onSlideDragStart: e => {
+                    let {active: t} = e;
+                    N(t.id)
+                }
+                ,
+                onSlideDragEnd: e => {
+                    let {active: t, over: a} = e;
+                    if (a && (T.trackEvent(["ym"], "outline-edit", {
+                        type: "dnd"
+                    }),
+                    N(null),
+                    t.id !== a.id)) {
+                        let e = y.findIndex(e => e.id === a.id)
+                          , l = y.findIndex(e => e.id === t.id);
+                        e >= i.UJ && e < y.length - 1 && C(l, e)
+                    }
+                }
+                ,
+                onSlideAdd: e => {
+                    let t = (0,
+                    s.Ak)();
+                    w(e, {
+                        id: t,
+                        slideType: "text",
+                        title: "",
+                        description: ""
+                    }),
+                    A(new Set([t])),
+                    setTimeout( () => {
+                        let e = I.current[t];
+                        null == e || e.focus()
+                    }
+                    , 0)
+                }
+                ,
+                onSlideUpdate: j,
+                onSlideRemove: k,
+                onSlideToggleExpand: (e, t) => {
+                    A(new Set(t ? [e] : []))
+                }
+                ,
+                onUpdateSlidesAmount: e => {
+                    P.mutate({
+                        slidesAmount: e
+                    })
+                }
+                ,
+                onUpdateLanguage: e => {
+                    P.mutate({
+                        language: e
+                    })
+                }
+                ,
+                onCheckAllSlides: () => {
+                    A(R ? new Set : new Set(y.map(e => e.id)))
+                }
+                ,
+                onSubmitOutline: () => {
+                    a || x || g()
+                }
+            }
+        }
     }
-  ]
-}
+    ,
+    13227: (e, t, a) => {
+        a.d(t, {
+            A: () => l
+        });
+        let l = (0,
+        a(92068).A)("undo-2", [["path", {
+            d: "M9 14 4 9l5-5",
+            key: "102s5s"
+        }], ["path", {
+            d: "M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11",
+            key: "f3b9sd"
+        }]])
+    }
+    ,
+    21631: (e, t, a) => {
+        a.d(t, {
+            bq: () => m,
+            eb: () => v,
+            gC: () => f,
+            l6: () => u,
+            yv: () => p
+        });
+        var l = a(28322)
+          , n = a(46093)
+          , s = a(83805)
+          , r = a(54568)
+          , o = a(14730)
+          , i = a(72116)
+          , d = a(80021);
+        a(7620);
+        var c = a(25703);
+        let u = o.bL;
+        o.YJ;
+        let p = o.WT
+          , m = e => {
+            var {className: t, children: a} = e
+              , d = (0,
+            s._)(e, ["className", "children"]);
+            return (0,
+            r.jsxs)(o.l9, (0,
+            n._)((0,
+            l._)({
+                className: (0,
+                c.cn)("inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[50px] bg-redesign-april-gray px-5 py-4 text-sm ring-offset-2 ring-offset-white hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-black focus-visible:opacity-80 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1", t)
+            }, d), {
+                children: [a, (0,
+                r.jsx)(o.In, {
+                    asChild: !0,
+                    children: (0,
+                    r.jsx)(i.A, {
+                        className: "h-4 w-4 opacity-50"
+                    })
+                })]
+            }))
+        }
+          , x = e => {
+            var {className: t} = e
+              , a = (0,
+            s._)(e, ["className"]);
+            return (0,
+            r.jsx)(o.PP, (0,
+            n._)((0,
+            l._)({
+                className: (0,
+                c.cn)("flex cursor-default items-center justify-center py-1", t)
+            }, a), {
+                children: (0,
+                r.jsx)(d.A, {
+                    className: "h-4 w-4"
+                })
+            }))
+        }
+          , h = e => {
+            var {className: t} = e
+              , a = (0,
+            s._)(e, ["className"]);
+            return (0,
+            r.jsx)(o.wn, (0,
+            n._)((0,
+            l._)({
+                className: (0,
+                c.cn)("flex cursor-default items-center justify-center py-1", t)
+            }, a), {
+                children: (0,
+                r.jsx)(i.A, {
+                    className: "h-4 w-4"
+                })
+            }))
+        }
+          , f = e => {
+            var {className: t, children: a, position: i="popper"} = e
+              , d = (0,
+            s._)(e, ["className", "children", "position"]);
+            return (0,
+            r.jsx)(o.ZL, {
+                children: (0,
+                r.jsxs)(o.UC, (0,
+                n._)((0,
+                l._)({
+                    className: (0,
+                    c.cn)("relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-lg border border-neutral-200 bg-white text-black shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2", "popper" === i && "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1", t),
+                    position: i
+                }, d), {
+                    children: [(0,
+                    r.jsx)(x, {}), (0,
+                    r.jsx)(o.LM, {
+                        className: (0,
+                        c.cn)("p-1", "popper" === i && "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"),
+                        children: a
+                    }), (0,
+                    r.jsx)(h, {})]
+                }))
+            })
+        }
+          , v = e => {
+            var {className: t, children: a} = e
+              , i = (0,
+            s._)(e, ["className", "children"]);
+            return (0,
+            r.jsx)(o.q7, (0,
+            n._)((0,
+            l._)({
+                className: (0,
+                c.cn)("relative flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-base outline-none focus:bg-redesign-april-gray focus:text-black data-[disabled]:pointer-events-none data-[disabled]:opacity-50", t)
+            }, i), {
+                children: (0,
+                r.jsx)(o.p4, {
+                    children: a
+                })
+            }))
+        }
+    }
+    ,
+    25592: (e, t, a) => {
+        a.d(t, {
+            A: () => l
+        });
+        let l = (0,
+        a(92068).A)("wand-sparkles", [["path", {
+            d: "m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72",
+            key: "ul74o6"
+        }], ["path", {
+            d: "m14 7 3 3",
+            key: "1r5n42"
+        }], ["path", {
+            d: "M5 6v4",
+            key: "ilb8ba"
+        }], ["path", {
+            d: "M19 14v4",
+            key: "blhpug"
+        }], ["path", {
+            d: "M10 2v2",
+            key: "7u0qdc"
+        }], ["path", {
+            d: "M7 8H3",
+            key: "zfb6yr"
+        }], ["path", {
+            d: "M21 16h-4",
+            key: "1cnmox"
+        }], ["path", {
+            d: "M11 3H9",
+            key: "1obp7u"
+        }]])
+    }
+    ,
+    37193: (e, t, a) => {
+        a.d(t, {
+            UC: () => Q,
+            ZL: () => W,
+            bL: () => V,
+            l9: () => B
+        });
+        var l = a(28322)
+          , n = a(46093)
+          , s = a(83805)
+          , r = a(7620)
+          , o = a(47231)
+          , i = a(61715)
+          , d = a(18107)
+          , c = a(48966)
+          , u = a(26419)
+          , p = a(18249)
+          , m = a(1679)
+          , x = a(81942)
+          , h = a(14972)
+          , f = a(48787)
+          , v = a(60421)
+          , g = a(46118)
+          , y = a(54111)
+          , b = a(9702)
+          , _ = a(72413)
+          , w = a(54568)
+          , j = "Popover"
+          , [k,C] = (0,
+        d.A)(j, [x.Bk])
+          , N = (0,
+        x.Bk)()
+          , [E,D] = k(j)
+          , A = e => {
+            let {__scopePopover: t, children: a, open: s, defaultOpen: o, onOpenChange: i, modal: d=!1} = e
+              , c = N(t)
+              , u = r.useRef(null)
+              , [p,h] = r.useState(!1)
+              , [f,v] = (0,
+            y.i)({
+                prop: s,
+                defaultProp: null != o && o,
+                onChange: i,
+                caller: j
+            });
+            return (0,
+            w.jsx)(x.bL, (0,
+            n._)((0,
+            l._)({}, c), {
+                children: (0,
+                w.jsx)(E, {
+                    scope: t,
+                    contentId: (0,
+                    m.B)(),
+                    triggerRef: u,
+                    open: f,
+                    onOpenChange: v,
+                    onOpenToggle: r.useCallback( () => v(e => !e), [v]),
+                    hasCustomAnchor: p,
+                    onCustomAnchorAdd: r.useCallback( () => h(!0), []),
+                    onCustomAnchorRemove: r.useCallback( () => h(!1), []),
+                    modal: d,
+                    children: a
+                })
+            }))
+        }
+        ;
+        A.displayName = j;
+        var I = "PopoverAnchor";
+        r.forwardRef( (e, t) => {
+            let {__scopePopover: a} = e
+              , o = (0,
+            s._)(e, ["__scopePopover"])
+              , i = D(I, a)
+              , d = N(a)
+              , {onCustomAnchorAdd: c, onCustomAnchorRemove: u} = i;
+            return r.useEffect( () => (c(),
+            () => u()), [c, u]),
+            (0,
+            w.jsx)(x.Mz, (0,
+            n._)((0,
+            l._)({}, d, o), {
+                ref: t
+            }))
+        }
+        ).displayName = I;
+        var S = "PopoverTrigger"
+          , T = r.forwardRef( (e, t) => {
+            let {__scopePopover: a} = e
+              , r = (0,
+            s._)(e, ["__scopePopover"])
+              , d = D(S, a)
+              , c = N(a)
+              , u = (0,
+            i.s)(t, d.triggerRef)
+              , p = (0,
+            w.jsx)(v.sG.button, (0,
+            n._)((0,
+            l._)({
+                type: "button",
+                "aria-haspopup": "dialog",
+                "aria-expanded": d.open,
+                "aria-controls": d.contentId,
+                "data-state": J(d.open)
+            }, r), {
+                ref: u,
+                onClick: (0,
+                o.mK)(e.onClick, d.onOpenToggle)
+            }));
+            return d.hasCustomAnchor ? p : (0,
+            w.jsx)(x.Mz, (0,
+            n._)((0,
+            l._)({
+                asChild: !0
+            }, c), {
+                children: p
+            }))
+        }
+        );
+        T.displayName = S;
+        var P = "PopoverPortal"
+          , [R,M] = k(P, {
+            forceMount: void 0
+        })
+          , O = e => {
+            let {__scopePopover: t, forceMount: a, children: l, container: n} = e
+              , s = D(P, t);
+            return (0,
+            w.jsx)(R, {
+                scope: t,
+                forceMount: a,
+                children: (0,
+                w.jsx)(f.C, {
+                    present: a || s.open,
+                    children: (0,
+                    w.jsx)(h.Z, {
+                        asChild: !0,
+                        container: n,
+                        children: l
+                    })
+                })
+            })
+        }
+        ;
+        O.displayName = P;
+        var z = "PopoverContent"
+          , U = r.forwardRef( (e, t) => {
+            let a = M(z, e.__scopePopover)
+              , {forceMount: r=a.forceMount} = e
+              , o = (0,
+            s._)(e, ["forceMount"])
+              , i = D(z, e.__scopePopover);
+            return (0,
+            w.jsx)(f.C, {
+                present: r || i.open,
+                children: i.modal ? (0,
+                w.jsx)(L, (0,
+                n._)((0,
+                l._)({}, o), {
+                    ref: t
+                })) : (0,
+                w.jsx)(H, (0,
+                n._)((0,
+                l._)({}, o), {
+                    ref: t
+                }))
+            })
+        }
+        );
+        U.displayName = z;
+        var F = (0,
+        g.TL)("PopoverContent.RemoveScroll")
+          , L = r.forwardRef( (e, t) => {
+            let a = D(z, e.__scopePopover)
+              , s = r.useRef(null)
+              , d = (0,
+            i.s)(t, s)
+              , c = r.useRef(!1);
+            return r.useEffect( () => {
+                let e = s.current;
+                if (e)
+                    return (0,
+                    b.Eq)(e)
+            }
+            , []),
+            (0,
+            w.jsx)(_.A, {
+                as: F,
+                allowPinchZoom: !0,
+                children: (0,
+                w.jsx)(q, (0,
+                n._)((0,
+                l._)({}, e), {
+                    ref: d,
+                    trapFocus: a.open,
+                    disableOutsidePointerEvents: !0,
+                    onCloseAutoFocus: (0,
+                    o.mK)(e.onCloseAutoFocus, e => {
+                        var t;
+                        e.preventDefault(),
+                        c.current || null == (t = a.triggerRef.current) || t.focus()
+                    }
+                    ),
+                    onPointerDownOutside: (0,
+                    o.mK)(e.onPointerDownOutside, e => {
+                        let t = e.detail.originalEvent
+                          , a = 0 === t.button && !0 === t.ctrlKey;
+                        c.current = 2 === t.button || a
+                    }
+                    , {
+                        checkForDefaultPrevented: !1
+                    }),
+                    onFocusOutside: (0,
+                    o.mK)(e.onFocusOutside, e => e.preventDefault(), {
+                        checkForDefaultPrevented: !1
+                    })
+                }))
+            })
+        }
+        )
+          , H = r.forwardRef( (e, t) => {
+            let a = D(z, e.__scopePopover)
+              , s = r.useRef(!1)
+              , o = r.useRef(!1);
+            return (0,
+            w.jsx)(q, (0,
+            n._)((0,
+            l._)({}, e), {
+                ref: t,
+                trapFocus: !1,
+                disableOutsidePointerEvents: !1,
+                onCloseAutoFocus: t => {
+                    var l, n;
+                    null == (l = e.onCloseAutoFocus) || l.call(e, t),
+                    t.defaultPrevented || (s.current || null == (n = a.triggerRef.current) || n.focus(),
+                    t.preventDefault()),
+                    s.current = !1,
+                    o.current = !1
+                }
+                ,
+                onInteractOutside: t => {
+                    var l, n;
+                    null == (l = e.onInteractOutside) || l.call(e, t),
+                    t.defaultPrevented || (s.current = !0,
+                    "pointerdown" === t.detail.originalEvent.type && (o.current = !0));
+                    let r = t.target;
+                    (null == (n = a.triggerRef.current) ? void 0 : n.contains(r)) && t.preventDefault(),
+                    "focusin" === t.detail.originalEvent.type && o.current && t.preventDefault()
+                }
+            }))
+        }
+        )
+          , q = r.forwardRef( (e, t) => {
+            let {__scopePopover: a, trapFocus: r, onOpenAutoFocus: o, onCloseAutoFocus: i, disableOutsidePointerEvents: d, onEscapeKeyDown: m, onPointerDownOutside: h, onFocusOutside: f, onInteractOutside: v} = e
+              , g = (0,
+            s._)(e, ["__scopePopover", "trapFocus", "onOpenAutoFocus", "onCloseAutoFocus", "disableOutsidePointerEvents", "onEscapeKeyDown", "onPointerDownOutside", "onFocusOutside", "onInteractOutside"])
+              , y = D(z, a)
+              , b = N(a);
+            return (0,
+            u.Oh)(),
+            (0,
+            w.jsx)(p.n, {
+                asChild: !0,
+                loop: !0,
+                trapped: r,
+                onMountAutoFocus: o,
+                onUnmountAutoFocus: i,
+                children: (0,
+                w.jsx)(c.qW, {
+                    asChild: !0,
+                    disableOutsidePointerEvents: d,
+                    onInteractOutside: v,
+                    onEscapeKeyDown: m,
+                    onPointerDownOutside: h,
+                    onFocusOutside: f,
+                    onDismiss: () => y.onOpenChange(!1),
+                    children: (0,
+                    w.jsx)(x.UC, (0,
+                    n._)((0,
+                    l._)({
+                        "data-state": J(y.open),
+                        role: "dialog",
+                        id: y.contentId
+                    }, b, g), {
+                        ref: t,
+                        style: (0,
+                        l._)({}, g.style, {
+                            "--radix-popover-content-transform-origin": "var(--radix-popper-transform-origin)",
+                            "--radix-popover-content-available-width": "var(--radix-popper-available-width)",
+                            "--radix-popover-content-available-height": "var(--radix-popper-available-height)",
+                            "--radix-popover-trigger-width": "var(--radix-popper-anchor-width)",
+                            "--radix-popover-trigger-height": "var(--radix-popper-anchor-height)"
+                        })
+                    }))
+                })
+            })
+        }
+        )
+          , K = "PopoverClose";
+        function J(e) {
+            return e ? "open" : "closed"
+        }
+        r.forwardRef( (e, t) => {
+            let {__scopePopover: a} = e
+              , r = (0,
+            s._)(e, ["__scopePopover"])
+              , i = D(K, a);
+            return (0,
+            w.jsx)(v.sG.button, (0,
+            n._)((0,
+            l._)({
+                type: "button"
+            }, r), {
+                ref: t,
+                onClick: (0,
+                o.mK)(e.onClick, () => i.onOpenChange(!1))
+            }))
+        }
+        ).displayName = K,
+        r.forwardRef( (e, t) => {
+            let {__scopePopover: a} = e
+              , r = (0,
+            s._)(e, ["__scopePopover"])
+              , o = N(a);
+            return (0,
+            w.jsx)(x.i3, (0,
+            n._)((0,
+            l._)({}, o, r), {
+                ref: t
+            }))
+        }
+        ).displayName = "PopoverArrow";
+        var V = A
+          , B = T
+          , W = O
+          , Q = U
+    }
+    ,
+    47229: (e, t, a) => {
+        a.d(t, {
+            ER: () => l,
+            P5: () => n,
+            UJ: () => s
+        });
+        let l = {
+            opening: "outline.slide-types.cover",
+            intro: "outline.slide-types.intro",
+            text: "outline.slide-types.text",
+            "text-with-image": "outline.slide-types.text-with-image",
+            chart: "outline.slide-types.chart",
+            flowchart: "outline.slide-types.flowchart",
+            table: "outline.slide-types.table",
+            conclusion: "outline.slide-types.conclusion"
+        }
+          , n = ["text", "text-with-image", "chart", "flowchart", "table"]
+          , s = 2
+    }
+    ,
+    56386: (e, t, a) => {
+        a.d(t, {
+            q: () => n
+        });
+        var l = a(7620);
+        function n(e) {
+            let {value: t, animated: a} = e
+              , [n,s] = (0,
+            l.useState)("")
+              , r = (0,
+            l.useRef)(a)
+              , o = (0,
+            l.useRef)(0);
+            return (0,
+            l.useEffect)( () => {
+                if (!t || !r.current)
+                    return;
+                let e = setInterval( () => {
+                    s(t.slice(0, o.current)),
+                    o.current++,
+                    o.current > t.length && clearInterval(e)
+                }
+                , 10);
+                return () => clearInterval(e)
+            }
+            , [t]),
+            r.current ? n : t
+        }
+    }
+    ,
+    72639: (e, t, a) => {
+        a.d(t, {
+            AM: () => i,
+            Wv: () => d,
+            hl: () => u,
+            i0: () => c
+        });
+        var l = a(28322)
+          , n = a(83805)
+          , s = a(54568)
+          , r = a(37193);
+        a(7620);
+        var o = a(25703);
+        let i = r.bL
+          , d = r.l9
+          , c = r.ZL
+          , u = e => {
+            var {className: t, align: a="center", sideOffset: i=4} = e
+              , d = (0,
+            n._)(e, ["className", "align", "sideOffset"]);
+            return (0,
+            s.jsx)(r.UC, (0,
+            l._)({
+                align: a,
+                sideOffset: i,
+                className: (0,
+                o.cn)("z-50 w-72 rounded-md border border-neutral-200 bg-white p-4 text-black shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2", t)
+            }, d))
+        }
+    }
+    ,
+    79082: (e, t, a) => {
+        a.d(t, {
+            NA: () => o,
+            SJ: () => l,
+            tO: () => r,
+            wM: () => n
+        });
+        let l = [{
+            label: "10",
+            value: 10
+        }, {
+            label: "15",
+            value: 15
+        }, {
+            label: "20",
+            value: 20
+        }, {
+            label: "25",
+            value: 25
+        }, {
+            label: "30",
+            value: 30
+        }]
+          , n = {
+            ru: "Русский",
+            en: "English",
+            kz: "Қазақ",
+            de: "Deutsch",
+            fr: "Fran\xe7ais",
+            es: "Espa\xf1ol",
+            pl: "Polski",
+            "uz-Latn": "O'zbek",
+            "uz-Cyrl": "Ўзбек"
+        }
+          , s = [{
+            value: "ru",
+            label: "Русский"
+        }, {
+            value: "en",
+            label: "English"
+        }, {
+            value: "kz",
+            label: "Қазақ"
+        }, {
+            value: "de",
+            label: "Deutsch"
+        }, {
+            value: "fr",
+            label: "Fran\xe7ais"
+        }, {
+            value: "es",
+            label: "Espa\xf1ol"
+        }, {
+            value: "pl",
+            label: "Polski"
+        }, {
+            value: "uz-Latn",
+            label: "O'zbek"
+        }, {
+            value: "uz-Cyrl",
+            label: "Ўзбек"
+        }]
+          , r = e => "de" === e ? [{
+            value: "en",
+            label: "English"
+        }, {
+            value: "de",
+            label: "Deutsch"
+        }, {
+            value: "fr",
+            label: "Fran\xe7ais"
+        }, {
+            value: "es",
+            label: "Espa\xf1ol"
+        }, {
+            value: "ru",
+            label: "Русский"
+        }, {
+            value: "pl",
+            label: "Polski"
+        }, {
+            value: "kz",
+            label: "Қазақ"
+        }, {
+            value: "uz-Latn",
+            label: "O'zbek"
+        }, {
+            value: "uz-Cyrl",
+            label: "Ўзбек"
+        }] : s
+          , o = {
+            "application/msword": [".doc"],
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"],
+            "text/plain": [".txt"],
+            "application/vnd.openxmlformats-officedocument.presentationml.presentation": [".pptx"],
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
+            "application/vnd.oasis.opendocument.text": [".odt"],
+            "application/vnd.oasis.opendocument.presentation": [".odp"],
+            "application/vnd.oasis.opendocument.spreadsheet": [".ods"],
+            "application/pdf": [".pdf"]
+        }
+    }
+    ,
+    80229: (e, t, a) => {
+        a.d(t, {
+            A: () => l
+        });
+        let l = (0,
+        a(92068).A)("menu", [["line", {
+            x1: "4",
+            x2: "20",
+            y1: "12",
+            y2: "12",
+            key: "1e0a9i"
+        }], ["line", {
+            x1: "4",
+            x2: "20",
+            y1: "6",
+            y2: "6",
+            key: "1owob3"
+        }], ["line", {
+            x1: "4",
+            x2: "20",
+            y1: "18",
+            y2: "18",
+            key: "yk5zj1"
+        }]])
+    }
+    ,
+    90112: (e, t, a) => {
+        a.r(t),
+        a.d(t, {
+            DesktopOutline: () => M
+        });
+        var l = a(28322)
+          , n = a(54568)
+          , s = a(87402)
+          , r = a(29364)
+          , o = a(25592)
+          , i = a(97509)
+          , d = a(8991)
+          , c = a(21631)
+          , u = a(58946)
+          , p = a(70883)
+          , m = a(75232)
+          , x = a(27946)
+          , h = a(86787)
+          , f = a(79082)
+          , v = a(47229)
+          , g = a(9523)
+          , y = a(13227)
+          , b = a(7620)
+          , _ = a(25703);
+        let w = e => {
+            let {t} = (0,
+            x.a)()
+              , [a,l] = (0,
+            b.useState)("")
+              , [s,r] = (0,
+            b.useState)(t("outline.prompt-placeholder"))
+              , o = (0,
+            b.useRef)(null);
+            return (0,
+            n.jsxs)("form", {
+                className: "relative flex max-w-4xl items-end overflow-hidden rounded-3xl bg-white pr-16 lg:pr-20",
+                ref: o,
+                onSubmit: t => {
+                    t.preventDefault(),
+                    "" !== a.trim() && (r(a),
+                    e.onRegenerate(a))
+                }
+                ,
+                children: [(0,
+                n.jsx)("textarea", {
+                    rows: 5,
+                    className: "min-h-auto w-full resize-none px-6 py-4 leading-6 outline-none placeholder:text-black placeholder:opacity-30",
+                    placeholder: s,
+                    value: a,
+                    onKeyDown: e => {
+                        "Enter" === e.key && !e.shiftKey && (e.preventDefault(),
+                        o.current && o.current.requestSubmit())
+                    }
+                    ,
+                    onChange: e => {
+                        l(e.target.value)
+                    }
+                }), (0,
+                n.jsx)("button", {
+                    type: "submit",
+                    disabled: "" === a.trim() || e.isRegenerating || e.isSubmitting,
+                    className: (0,
+                    _.cn)("absolute bottom-4 right-4 flex size-12 items-center justify-center rounded-full bg-black disabled:cursor-default disabled:opacity-20 lg:size-16"),
+                    children: (0,
+                    n.jsx)(y.A, {
+                        className: "size-6 scale-y-[-1] text-white lg:size-8",
+                        size: 32
+                    })
+                })]
+            })
+        }
+        ;
+        var j = a(46093)
+          , k = a(62868)
+          , C = a(80229)
+          , N = a(12494)
+          , E = a(72116)
+          , D = a(95400)
+          , A = a(40763)
+          , I = a(56386)
+          , S = a(72639)
+          , T = a(1259);
+        function P(e) {
+            let {value: t, onTypeChange: a, className: l} = e
+              , [s,r] = b.useState(!1)
+              , {t: o} = (0,
+            x.a)();
+            return (0,
+            n.jsxs)(S.AM, {
+                open: s,
+                onOpenChange: r,
+                children: [(0,
+                n.jsx)(S.Wv, {
+                    asChild: !0,
+                    children: (0,
+                    n.jsx)("button", {
+                        className: (0,
+                        _.cn)("mt-1 flex h-6 cursor-pointer items-center gap-4 font-normal", l),
+                        onClick: e => {
+                            e.stopPropagation(),
+                            r(!0)
+                        }
+                        ,
+                        children: (0,
+                        n.jsx)("span", {
+                            className: "whitespace-nowrap rounded-[40px] bg-redesign-april-gray px-3 py-1",
+                            children: o(v.ER[t])
+                        })
+                    })
+                }), (0,
+                n.jsx)(S.i0, {
+                    children: (0,
+                    n.jsx)(S.hl, {
+                        className: "relative w-max border-none shadow-[0_4px_16px_0_#0000001F]",
+                        align: "end",
+                        onOpenAutoFocus: e => e.preventDefault(),
+                        onClick: e => e.stopPropagation(),
+                        children: (0,
+                        n.jsxs)("div", {
+                            className: "flex flex-col",
+                            children: [(0,
+                            n.jsx)("p", {
+                                className: "mb-2 text-sm opacity-20",
+                                children: o("outline.slide-types.title")
+                            }), (0,
+                            n.jsx)(T.z, {
+                                defaultValue: t,
+                                onValueChange: e => {
+                                    null == a || a(e),
+                                    r(!1)
+                                }
+                                ,
+                                children: v.P5.map(e => (0,
+                                n.jsxs)("div", {
+                                    className: "flex items-center *:last-of-type:mb-0",
+                                    children: [(0,
+                                    n.jsx)(T.C, {
+                                        value: e,
+                                        id: e,
+                                        className: "mr-2.5"
+                                    }), (0,
+                                    n.jsx)(u.J, {
+                                        htmlFor: e,
+                                        className: "text-base font-normal hover:cursor-pointer",
+                                        children: o(v.ER[e])
+                                    })]
+                                }, e))
+                            })]
+                        })
+                    })
+                })]
+            })
+        }
+        function R(e) {
+            let {id: t, title: a="", description: s="", slideType: o, index: i, forceShowDndHandle: d=!1, editableSlideType: c=!1, editableContent: u=!1, animated: p=!1, enableAdd: m=!1, enableDnd: h=!1, isExpanded: f, isDndActive: g, onSetInputNode: y, onChange: w, onSlideAdd: S, onSlideRemove: T, onToggleExpand: R} = e
+              , M = (0,
+            A.s)()
+              , {attributes: O, listeners: z, setNodeRef: U, transform: F, transition: L, isDragging: H} = (0,
+            r.gl)({
+                id: t,
+                disabled: !h
+            })
+              , q = (0,
+            b.useRef)(null)
+              , K = (0,
+            I.q)({
+                value: a,
+                animated: p
+            })
+              , J = (0,
+            I.q)({
+                value: s,
+                animated: p
+            })
+              , {t: V} = (0,
+            x.a)();
+            return (0,
+            n.jsxs)("div", (0,
+            j._)((0,
+            l._)({
+                ref: e => {
+                    q.current = e,
+                    U(e)
+                }
+                ,
+                style: g ? {
+                    transform: k.Ks.Transform.toString((0,
+                    j._)((0,
+                    l._)({}, F), {
+                        scaleX: 1,
+                        scaleY: 1
+                    })),
+                    transition: L
+                } : {}
+            }, O), {
+                className: (0,
+                _.cn)("group relative flex cursor-default items-start", {
+                    "opacity-50": H
+                }),
+                children: [(0,
+                n.jsx)("div", (0,
+                j._)((0,
+                l._)({
+                    className: (0,
+                    _.cn)("group/dnd mt-4 flex h-8 items-center", {
+                        "cursor-grab": h
+                    })
+                }, z), {
+                    children: (0,
+                    n.jsx)(C.A, {
+                        className: (0,
+                        _.cn)("flex w-7 text-[#D9D9D9] opacity-0 group-hover/dnd:text-black", {
+                            "pointer-events-none": !h,
+                            "group-hover:opacity-100": h,
+                            "opacity-100": d || h && f
+                        })
+                    })
+                })), (0,
+                n.jsxs)("div", {
+                    className: (0,
+                    _.cn)("relative mx-2 flex w-full flex-col gap-1 rounded-xl bg-white px-5 py-4", {
+                        "cursor-pointer": !f && R
+                    }),
+                    onClick: () => {
+                        f || null == R || R(t, !0)
+                    }
+                    ,
+                    children: [(0,
+                    n.jsxs)("div", {
+                        className: "flex items-start gap-1",
+                        children: [(0,
+                        n.jsx)("div", {
+                            className: "flex h-8 items-center",
+                            children: (0,
+                            n.jsxs)("span", {
+                                className: (0,
+                                _.cn)("flex w-8 justify-end text-center text-base font-medium"),
+                                children: [i, "."]
+                            })
+                        }), (0,
+                        n.jsxs)("div", {
+                            className: "flex flex-grow items-start justify-between gap-1",
+                            children: [(0,
+                            n.jsx)("p", {
+                                contentEditable: u && f,
+                                ref: e => {
+                                    e && y && y(t, e)
+                                }
+                                ,
+                                className: (0,
+                                _.cn)("w-full max-w-screen-sm flex-grow rounded-sm px-2 py-1 font-medium outline-0", {
+                                    "cursor-text hover:bg-[#D9D9D9] hover:bg-opacity-20": u && f
+                                }),
+                                onBlur: e => {
+                                    M.trackEvent(["ym"], "outline-edit", {
+                                        type: "text"
+                                    }),
+                                    null == w || w({
+                                        id: t,
+                                        slideType: o,
+                                        description: s,
+                                        title: e.currentTarget.innerText
+                                    })
+                                }
+                                ,
+                                dangerouslySetInnerHTML: {
+                                    __html: K
+                                }
+                            }), c ? (0,
+                            n.jsx)(P, {
+                                value: o,
+                                onTypeChange: e => {
+                                    M.trackEvent(["ym"], "outline-edit", {
+                                        type: "slideType"
+                                    }),
+                                    null == w || w({
+                                        id: t,
+                                        title: a,
+                                        description: s,
+                                        slideType: e
+                                    })
+                                }
+                            }) : (0,
+                            n.jsx)("span", {
+                                className: "mt-1 block whitespace-nowrap pr-2 text-neutral-400",
+                                children: V(v.ER[o])
+                            })]
+                        })]
+                    }), (0,
+                    n.jsxs)("div", {
+                        className: (0,
+                        _.cn)("hidden pl-0", {
+                            block: f
+                        }),
+                        children: [(0,
+                        n.jsx)("p", {
+                            contentEditable: u,
+                            className: (0,
+                            _.cn)("flex-grow rounded-sm px-1", {
+                                block: f,
+                                "cursor-text hover:bg-[#D9D9D9] hover:bg-opacity-20": u
+                            }),
+                            onBlur: e => {
+                                M.trackEvent(["ym"], "outline-edit", {
+                                    type: "text"
+                                }),
+                                null == w || w({
+                                    id: t,
+                                    slideType: o,
+                                    description: e.currentTarget.innerText,
+                                    title: a
+                                })
+                            }
+                            ,
+                            dangerouslySetInnerHTML: {
+                                __html: J
+                            }
+                        }), c && (0,
+                        n.jsx)(D.$, {
+                            className: "mt-1 text-red-500",
+                            variant: "ghost",
+                            size: "sm",
+                            onClick: () => null == T ? void 0 : T(t),
+                            children: V("outline.items.delete")
+                        })]
+                    }), m && !g && (0,
+                    n.jsx)("div", {
+                        className: "absolute -bottom-4 left-1/2 z-10 hidden size-8 -translate-x-1/2 cursor-pointer items-center justify-center rounded-full bg-black opacity-50 shadow-[0_4px_16px_0_#0000001F] hover:opacity-100 group-hover:flex",
+                        onClick: e => {
+                            e.stopPropagation(),
+                            null == S || S(t)
+                        }
+                        ,
+                        children: (0,
+                        n.jsx)(N.A, {
+                            color: "white"
+                        })
+                    })]
+                }), (0,
+                n.jsx)("button", {
+                    className: (0,
+                    _.cn)("group/button mt-3 flex h-8 w-8 items-center justify-center opacity-0 group-hover:opacity-100", {
+                        "rotate-180 opacity-100": f
+                    }),
+                    onClick: () => {
+                        null == R || R(t, !f)
+                    }
+                    ,
+                    children: (0,
+                    n.jsx)(E.A, {
+                        className: "text-[#D9D9D9] group-hover/button:text-black",
+                        size: 24
+                    })
+                })]
+            }))
+        }
+        let M = e => {
+            let {order: t, isSubmitting: a, isRegenerating: y, onRegenerate: b, onUpdate: _, onSubmit: j} = e
+              , {outline: k, active: C, areAllSlidesChecked: N, onSetInputNode: E, onCheckExpanded: D, onSlideDragStart: A, onSlideDragEnd: I, onSlideAdd: S, onSlideUpdate: T, onSlideRemove: P, onSlideToggleExpand: M, onUpdateSlidesAmount: O, onUpdateLanguage: z, onSubmitOutline: U, onCheckAllSlides: F} = (0,
+            g.x)({
+                order: t,
+                isSubmitting: a,
+                isRegenerating: y,
+                onUpdate: _,
+                onSubmit: j
+            })
+              , {market: L} = (0,
+            h.useDomainConfig)()
+              , H = (0,
+            f.tO)(L)
+              , q = (0,
+            s.FR)((0,
+            s.MS)(s.cA), (0,
+            s.MS)(s.IG))
+              , {t: K} = (0,
+            x.a)();
+            return (0,
+            n.jsxs)("div", {
+                className: "mx-auto flex w-full max-w-[1600px] bg-redesign-april-gray",
+                children: [(0,
+                n.jsx)(p.F, {
+                    className: "h-screen w-3/5 px-5 lg:px-10",
+                    hideScrollBar: !0,
+                    children: (0,
+                    n.jsxs)(s.Mp, {
+                        sensors: q,
+                        collisionDetection: s.fp,
+                        onDragStart: A,
+                        onDragEnd: I,
+                        children: [(0,
+                        n.jsx)("div", {
+                            className: "mx-auto space-y-2 py-24",
+                            children: (0,
+                            n.jsx)(r.gB, {
+                                items: k.slice(v.UJ, k.length - 1),
+                                strategy: r._G,
+                                children: k.map( (e, t) => (0,
+                                n.jsx)(R, {
+                                    index: t + 1,
+                                    id: e.id,
+                                    title: e.title,
+                                    description: e.description,
+                                    slideType: e.slideType,
+                                    enableAdd: !y && t > 0 && t < k.length - 1,
+                                    editableSlideType: !y && t >= v.UJ && t < k.length - 1,
+                                    editableContent: !y,
+                                    enableDnd: !y && t >= v.UJ && t < k.length - 1,
+                                    isExpanded: D(e.id),
+                                    isDndActive: !y && null !== C,
+                                    animated: y,
+                                    onSetInputNode: E,
+                                    onChange: T,
+                                    onSlideAdd: S,
+                                    onSlideRemove: P,
+                                    onToggleExpand: M
+                                }, e.id))
+                            })
+                        }), (0,
+                        i.createPortal)((0,
+                        n.jsx)(s.Hd, {
+                            children: C && (0,
+                            n.jsx)(R, (0,
+                            l._)({
+                                forceShowDndHandle: !0,
+                                editableSlideType: !0,
+                                isExpanded: D(C.item.id),
+                                isDndActive: !0,
+                                index: C.index + 1
+                            }, C.item))
+                        }), document.body)]
+                    })
+                }), (0,
+                n.jsxs)("div", {
+                    className: "flex w-2/5 flex-col bg-redesign-april-gray px-5 py-24 lg:px-10",
+                    children: [(0,
+                    n.jsxs)("div", {
+                        className: "mb-5 flex flex-col justify-between gap-4 xl:flex-row",
+                        children: [(0,
+                        n.jsxs)("div", {
+                            className: "flex h-fit w-fit items-center space-x-2 rounded-full bg-white p-3",
+                            children: [(0,
+                            n.jsx)(m.d, {
+                                id: "detailed",
+                                checked: N,
+                                disabled: a || y,
+                                onCheckedChange: F
+                            }), (0,
+                            n.jsx)(u.J, {
+                                htmlFor: "detailed",
+                                className: "font-normal",
+                                children: K("outline.expand")
+                            })]
+                        }), (0,
+                        n.jsxs)("div", {
+                            className: "flex flex-row justify-start gap-2 2xl:justify-end",
+                            children: [(0,
+                            n.jsxs)(c.l6, {
+                                defaultValue: "".concat(t.slidesAmount.toString(), " ").concat(K("home.form.slides-count")),
+                                onValueChange: e => O(parseInt(e)),
+                                children: [(0,
+                                n.jsx)(c.bq, {
+                                    className: "w-full min-w-28 bg-white md:w-fit",
+                                    children: (0,
+                                    n.jsxs)(c.yv, {
+                                        children: [t.slidesAmount, " ", K("home.form.slides-count")]
+                                    })
+                                }), (0,
+                                n.jsx)(c.gC, {
+                                    className: "min-w-48",
+                                    children: f.SJ.map(e => (0,
+                                    n.jsx)(c.eb, {
+                                        value: e.label,
+                                        className: "relative",
+                                        children: e.label
+                                    }, e.value))
+                                })]
+                            }), (0,
+                            n.jsxs)(c.l6, {
+                                value: t.language,
+                                onValueChange: e => z(e),
+                                children: [(0,
+                                n.jsx)(c.bq, {
+                                    className: "w-full min-w-28 bg-white md:w-fit",
+                                    children: (0,
+                                    n.jsx)(c.yv, {})
+                                }), (0,
+                                n.jsx)(c.gC, {
+                                    className: "min-w-48",
+                                    children: H.map(e => (0,
+                                    n.jsx)(c.eb, {
+                                        value: e.value,
+                                        children: e.label
+                                    }, e.value))
+                                })]
+                            })]
+                        })]
+                    }), (0,
+                    n.jsx)(w, {
+                        isRegenerating: y,
+                        isSubmitting: a,
+                        onRegenerate: b
+                    }), (0,
+                    n.jsxs)("div", {
+                        className: "mt-auto flex flex-col items-end justify-end",
+                        children: [(0,
+                        n.jsx)("hr", {
+                            className: "mb-5 h-px w-full bg-neutral-200"
+                        }), (0,
+                        n.jsxs)(d.$, {
+                            variant: "accent",
+                            size: "lg",
+                            loading: a || y,
+                            className: "rounded-2xl pl-7 pr-8",
+                            onClick: U,
+                            children: [(0,
+                            n.jsx)(o.A, {}), K("outline.submit")]
+                        })]
+                    })]
+                })]
+            })
+        }
+    }
+}]);
